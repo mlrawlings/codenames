@@ -1,4 +1,8 @@
 import React from 'react';
+import linkIcon from '../images/qr.png';
+import revealIcon from '../images/eye.png';
+import videoIcon from '../images/video.png';
+import restartIcon from '../images/refresh.png';
 
 const menuStyle = {
   flexDirection:'row',
@@ -25,11 +29,6 @@ const iconStyle = {
   verticalAlign:'middle',
   borderRadius:5
 }
-
-const videoIcon = "https://image.freepik.com/free-icon/video-chat-social_318-27933.png";
-const linkIcon = "http://downloadicons.net/sites/default/files/mobile-qr-code-icons-75764.png";
-const revealIcon = "http://iconshow.me/media/images/ui/ios7-icons/png/512/eye_1.png";
-const restartIcon = "http://simpleicon.com/wp-content/uploads/refresh.png";
 
 function Menu(props) {
   var start = props.start;
