@@ -1,0 +1,27 @@
+{
+  "name": "codenames",
+  "version": "0.0.1",
+  "private": true,
+  "devDependencies": {
+    "browser-refresh": "^1.6.0",
+    "react-scripts": "0.4.1"
+  },
+  "dependencies": {
+    "pushstate-server": "^1.14.0",
+    "randomstring": "^1.1.5",
+    "react": "^15.3.1",
+    "react-dom": "^15.3.1",
+    "simplewebrtc": "^2.2.0",
+    "socket.io": "^1.4.8",
+    "socket.io-client": "^1.4.8"
+  },
+  "scripts": {
+    "start": "react-scripts start & browser-refresh server & wait",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": "./node_modules/react-scripts/config/eslint.js"
+  }
+}
