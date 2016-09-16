@@ -9,6 +9,9 @@ coverage
 # production
 build
 
+# deployment
+deploy.bat
+
 # misc
 .DS_Store
 npm-debug.log

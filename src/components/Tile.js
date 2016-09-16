@@ -3,9 +3,9 @@ import React, { Component } from 'react';
 const tileStyle = {
   verticalAlign:'middle',
   textAlign:'center',
-  border:'4px solid #eee',
-  background:'#fff',
-  cursor:'pointer'
+  margin:4,
+  cursor:'pointer',
+  borderRadius:2
 };
 
 class Tile extends Component {
@@ -23,12 +23,16 @@ class Tile extends Component {
     var { word, type, height, width, showAll } = props;
     var show = props.show || state.show;
     var length = Math.max(4, word.length);
-    var opacity = show && showAll ? 0.2 : 1;
-    var color = show || showAll ? type.color : '#000';
-    var backgroundColor = show || showAll ? type.backgroundColor : '#fff';
+    var opacity = show && showAll ? 0.3 : 1;
+    var color = show || showAll ? type.color : '#222';
+    var backgroundColor = show ? (type.backgroundColor || 'transparent') : ((showAll && type.backgroundColor) || '#fff');
     var fontSize = Math.min(1.35*width/length, height*0.75);
     var lineHeight = (height*0.9)+'px';
     var fontWeight = Math.max(300, Math.round(0.7*Math.pow(width/fontSize, 1))*100);
+    var boxShadow = !show ? '1px 1px 2px rgba(0,0,0,0.15)' : 'none';
+
+    height -= 8;
+    width -= 8;
 
     return (
       <div
@@ -42,7 +46,8 @@ class Tile extends Component {
           color,
           opacity,
           width,
-          height
+          height,
+          boxShadow
         }}>
           {word.toLowerCase()}
       </div>

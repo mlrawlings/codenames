@@ -33,7 +33,7 @@ const iconStyle = {
 function Menu(props) {
   var start = props.start;
   return (
-    <div style={{ ...menuStyle, backgroundColor:start ? start.backgroundColor: '#555' }}>
+    <div style={{ ...menuStyle, backgroundColor:start ? start.color: '#555' }}>
       <div style={buttonStyle} onClick={props.onVideo}>
         <img style={iconStyle} alt="" src={videoIcon} />
         <span>start video</span>

@@ -28,6 +28,9 @@ class App extends Component {
       if(data.id !== this.state.id) {
         history.replaceState({}, '', data.id);
       }
+      if(data.count !== this.state.count) {
+        this.setState({ showAll:false });
+      }
       this.setState(data);
     });
   }
@@ -39,7 +42,6 @@ class App extends Component {
   }
   onRestart() {
     socket.emit('create-game', { id:this.state.id });
-    this.setState({ showAll:false });
   }
   onVideo() {
     this.setState({ video:!this.state.video });

@@ -72,21 +72,19 @@ function getWords() {
 
 var types = [{
   name:'red',
-  backgroundColor:'#bb0022',
-  color:'#fff',
+  color:'#b02',
   order:0
 },{
   name:'blue',
-  backgroundColor:'#0077cc',
-  color:'#fff',
+  color:'#06b',
   order:1
 },{
-  backgroundColor:'#ffeecc',
-  color:'#222',
+  color:'#987',
   order:3
 },{
-  backgroundColor:'#222222',
-  color:'#fff',
+  color:'#999',
+  backgroundColor:'#222',
+  inverse:true,
   order:2
 }];
 
