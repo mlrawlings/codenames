@@ -30,9 +30,12 @@ class Tile extends Component {
     var color = show || showAll ? type.color : '#222';
     var backgroundColor = show ? (type.backgroundColor || 'transparent') : ((showAll && type.backgroundColor) || '#fff');
     var fontSize = Math.min(1.35*width/length, height*0.75);
+    var largestFontSize = Math.min(1.35*width/3, height*0.75);
     var lineHeight = (height*0.9)+'px';
-    var fontWeight = Math.max(300, Math.round(0.7*Math.pow(width/fontSize, 1))*100);
+    var fontWeight = Math.max(300, Math.round(3*Math.pow(largestFontSize/fontSize, 1.2))*100);
     var boxShadow = !show ? '1px 1px 2px rgba(0,0,0,0.15)' : 'none';
+
+
 
     height -= 8;
     width -= 8;
