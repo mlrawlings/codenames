@@ -5,7 +5,7 @@ const tileStyle = {
   textAlign:'center',
   margin:4,
   cursor:'pointer',
-  borderRadius:2
+  borderRadius:3
 };
 
 class Tile extends Component {
@@ -13,6 +13,9 @@ class Tile extends Component {
     super(props);
     this.state = { show:false };
     this.show = this.show.bind(this);
+  }
+  componentWillReceiveProps(nextProps) {
+    if(nextProps.show) this.setState({ show:false });
   }
   show() {
     this.props.onShow(this.props.word);
