@@ -79,10 +79,10 @@ var types = [{
   color:'#06b',
   order:1
 },{
-  color:'#987',
+  color:'#bbb2aa',
   order:3
 },{
-  color:'#999',
+  color:'#888',
   backgroundColor:'#222',
   inverse:true,
   order:2
