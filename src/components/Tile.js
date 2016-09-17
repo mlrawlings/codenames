@@ -8,6 +8,21 @@ const tileStyle = {
   borderRadius:3
 };
 
+const letterWidths = {
+  b:1.2,
+  d:1.2,
+  f:0.6,
+  i:0.4,
+  j:0.4,
+  l:0.4,
+  m:1.7,
+  p:1.2,
+  q:1.2,
+  r:0.6,
+  t:0.6,
+  w:1.5
+}
+
 class Tile extends Component {
   constructor(props) {
     super(props);
@@ -25,17 +40,16 @@ class Tile extends Component {
     var { props, state } = this;
     var { word, type, height, width, showAll } = props;
     var show = props.show || state.show;
-    var length = Math.max(4, word.length);
+    var letters = Array.from(word.toLowerCase());
+    var length = Math.max(4, letters.map(l => letterWidths[l] || 1).reduce((a, b) => a+b, 0));
     var opacity = show && showAll ? 0.3 : 1;
     var color = show || showAll ? type.color : '#222';
     var backgroundColor = show ? (type.backgroundColor || 'transparent') : ((showAll && type.backgroundColor) || '#fff');
-    var fontSize = Math.min(1.35*width/length, height*0.75);
-    var largestFontSize = Math.min(1.35*width/3, height*0.75);
+    var fontSize = Math.min(1.5*width/length, height*0.75);
+    var largestFontSize = Math.min(1.5*width/3, height*0.75);
     var lineHeight = (height*0.9)+'px';
-    var fontWeight = Math.max(300, Math.round(3*Math.pow(largestFontSize/fontSize, 1.2))*100);
+    var fontWeight = Math.max(300, Math.round(3*Math.pow(largestFontSize/fontSize, 1.1))*100);
     var boxShadow = !show ? '1px 1px 2px rgba(0,0,0,0.15)' : 'none';
-
-
 
     height -= 8;
     width -= 8;
