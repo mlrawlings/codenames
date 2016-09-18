@@ -15,14 +15,14 @@ const rowStyle = {
   overflow:'hidden',
 };
 
-function Game({ team1, team2, board, showAll, video, onRestart, onShow, onVideo, onShowAll }) {
+function Game({ team1, team2, board, showAll, loading, video, onRestart, onShow, onVideo, onShowAll }) {
   return (
     <div style={gameStyle}>
       <div style={rowStyle}>
         <Menu showAll={showAll} video={video} onShow={onShowAll} onRestart={onRestart} onVideo={onVideo} />
-        <Scores team1={team1} team2={team2} tiles={board} />
+        <Scores team1={team1} team2={team2} tiles={board} loading={loading} />
       </div>
-      <Board tiles={board} onShow={onShow} showAll={showAll} />
+      <Board tiles={board} loading={loading} onShow={onShow} showAll={showAll} />
     </div>
   )
 }

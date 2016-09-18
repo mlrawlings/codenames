@@ -37,13 +37,18 @@ class Board extends Component {
     var props = this.props;
     var dim = this.state.dim;
     var tiles = props.tiles;
+    var style = boardStyle;
 
     if(props.showAll) {
       tiles = [].concat(tiles).sort((a, b) => a.type.order - b.type.order);
     }
 
+    if(props.loading) {
+      style = { ...style, opacity:0.5 }
+    }
+
     return (
-      <div ref={(el) => this.board = el} style={boardStyle}>
+      <div ref={(el) => this.board = el} style={style}>
         {dim && tiles.map((tile, i) => {
            return (
              <Tile

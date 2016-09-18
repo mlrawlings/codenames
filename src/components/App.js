@@ -29,7 +29,7 @@ class App extends Component {
         history.replaceState({}, '', data.id);
       }
       if(data.count !== this.state.count) {
-        this.setState({ showAll:false });
+        this.setState({ showAll:false, loading:false });
       }
       this.setState(data);
     });
@@ -44,13 +44,14 @@ class App extends Component {
   }
   onRestart() {
     socket.emit('create-game', { id:this.state.id });
+    this.setState({ loading:true });
   }
   onVideo() {
     this.setState({ video:!this.state.video });
     window.dispatchEvent(new Event('resize'));
   }
   render() {
-    var { id, video, team1, team2, board, showAll } = this.state;
+    var { id, video, team1, team2, board, showAll, loading } = this.state;
     var { onShow, onShowAll, onRestart, onVideo } = this;
     return (
       <Container>
@@ -61,6 +62,7 @@ class App extends Component {
           <Game team1={team1}
                 team2={team2}
                 board={board}
+                loading={loading}
                 showAll={showAll}
                 video={video}
                 onShow={onShow}
