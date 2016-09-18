@@ -36,6 +36,8 @@ class App extends Component {
   }
   onShow(word) {
     socket.emit('reveal-word', { id:this.state.id, word });
+    this.state.board.forEach(tile => { if(tile.word === word) return tile.show = true });
+    this.setStateDirty();
   }
   onShowAll() {
     this.setState({ showAll:!this.state.showAll });
