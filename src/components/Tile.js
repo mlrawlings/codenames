@@ -1,11 +1,26 @@
 import React from 'react';
+import Touchable from './Touchable';
 
 const tileStyle = {
   verticalAlign:'middle',
   textAlign:'center',
   margin:4,
   cursor:'pointer',
-  borderRadius:3
+  borderRadius:3,
+  position:'relative'
+};
+
+const tileStyleHover = {
+  boxShadow:'2px 2px 4px rgba(0,0,0,0.3)',
+  top:-1,
+  left:-1,
+  zIndex:2
+};
+
+const tileStyleActive = {
+  opacity:0.8,
+  backgroundColor:'transparent',
+  boxShadow:'none'
 };
 
 const letterWidths = {
@@ -39,7 +54,7 @@ function Tile({ word, type, height, width, show, showAll, onShow }) {
   width -= 8;
 
   return (
-    <div
+    <Touchable
       onClick={() => onShow(word)}
       style={{
         ...tileStyle,
@@ -52,9 +67,11 @@ function Tile({ word, type, height, width, show, showAll, onShow }) {
         width,
         height,
         boxShadow
-      }}>
+      }}
+      styleHover={!show && tileStyleHover}
+      styleActive={!show && tileStyleActive}>
         {word.toLowerCase()}
-    </div>
+    </Touchable>
   )
 }
 
