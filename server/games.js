@@ -9,20 +9,23 @@ exports.leaveGame = leaveGame;
 exports.revealWord = revealWord;
 
 function createGame(id) {
-    var start = Math.random() < 0.5 ? 0 : 1;
-    var words = getWords();
     var game = games[id] || {
       id: id || randomstring.generate(7),
       clients:1,
       count:0
     }
 
+    var start = game.team1 ? types.indexOf(game.team2) : (Math.random() < 0.5 ? 0 : 1);
+    var words = getWords();
+
     game.team1 = types[start];
     game.team2 = types[(start+1)%2];
+
     game.board = getBoard(start).map((tile, i) => ({
       word:words[i],
       type:types[tile]
     }));
+
     game.count++;
 
     games[game.id] = game;
