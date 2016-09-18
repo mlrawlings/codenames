@@ -12,7 +12,7 @@ const menuStyle = {
   padding:'8px 0px',
   backgroundColor:'#222',
   color:'#fff',
-  fontSize:'1.5vmin',
+  fontSize:'1.25vw',
   flex:1,
 };
 

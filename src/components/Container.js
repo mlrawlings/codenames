@@ -28,7 +28,7 @@ class Container extends Component {
     var { style } = this.props;
     var { flexDirection } = this.state;
     return (
-      <div ref={el => this.container = el} style={{ ...style, ...containerStyle, flexDirection }}>
+      <div ref={el => this.container = el} style={{ ...containerStyle, ...style, flexDirection }}>
         {this.props.children}
       </div>
     )
