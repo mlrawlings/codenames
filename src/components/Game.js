@@ -20,7 +20,7 @@ function Game({ team1, team2, board, showAll, loading, video, onRestart, onShow,
     <div style={gameStyle}>
       <div style={rowStyle}>
         <Menu showAll={showAll} video={video} onShow={onShowAll} onRestart={onRestart} onVideo={onVideo} />
-        <Scores team1={team1} team2={team2} tiles={board} loading={loading} />
+        <Scores team1={team1} team2={team2} tiles={board} />
       </div>
       <Board tiles={board} loading={loading} onShow={onShow} showAll={showAll} />
     </div>
