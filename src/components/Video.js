@@ -4,7 +4,8 @@ import Container from './Container';
 
 const videoStyle = {
   flex:1,
-  position:'relative'
+  position:'relative',
+  background:'#999'
 };
 
 const localVideoStyle = {

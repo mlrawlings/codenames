@@ -48,7 +48,7 @@ class App extends Component {
     window.dispatchEvent(new Event('resize'));
   }
   render() {
-    var { id, video, start, board, showAll } = this.state;
+    var { id, video, team1, team2, board, showAll } = this.state;
     var { onShow, onShowAll, onRestart, onVideo } = this;
     return (
       <Container>
@@ -56,9 +56,11 @@ class App extends Component {
           <Video id={id} />
         )}
         {id && (
-          <Game start={start}
+          <Game team1={team1}
+                team2={team2}
                 board={board}
                 showAll={showAll}
+                video={video}
                 onShow={onShow}
                 onShowAll={onShowAll}
                 onRestart={onRestart}

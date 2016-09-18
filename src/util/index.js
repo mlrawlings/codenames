@@ -13,7 +13,7 @@ export function getClosestDim(width, height) {
     }
   })
   return {
-    width:width/closest.width,
+    width:width/closest.width-0.25,
     height:height/closest.height
   };
 }

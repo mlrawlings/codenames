@@ -17,7 +17,8 @@ function createGame(id) {
       count:0
     }
 
-    game.start = types[start],
+    game.team1 = types[start];
+    game.team2 = types[(start+1)%2];
     game.board = getBoard(start).map((tile, i) => ({
       word:words[i],
       type:types[tile]
