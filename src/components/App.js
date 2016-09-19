@@ -4,7 +4,7 @@ import Game from './Game';
 import Video from './Video';
 import io from 'socket.io-client';
 
-const socket = io(location.protocol+'//'+(process.env.NODE_ENV === 'production' ? location.host : 'localhost:2633'));
+const socket = io(location.protocol+'//'+(process.env.NODE_ENV === 'production' ? location.host : location.hostname+':2633'));
 
 class App extends Component {
   constructor(props) {

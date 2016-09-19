@@ -8,18 +8,26 @@ class Touchable extends Component {
     this.unsetHover = this.unsetHover.bind(this);
     this.setActive = this.setActive.bind(this);
     this.unsetActive = this.unsetActive.bind(this);
+    this.setBoth = this.setBoth.bind(this);
+    this.unsetBoth = this.unsetBoth.bind(this);
   }
   setHover() {
     this.setState({ isHover:true });
   }
   unsetHover() {
-    this.setState({ isHover:false });
+    setTimeout(() => this.setState({ isHover:false }), 50);
   }
   setActive() {
     this.setState({ isActive:true });
   }
   unsetActive() {
-    this.setState({ isActive:false });
+    setTimeout(() => this.setState({ isActive:false }), 50);
+  }
+  setBoth() {
+    this.setState({ isActive:true, isHover:true });
+  }
+  unsetBoth() {
+    setTimeout(() => this.setState({ isActive:false, isHover:false }), 50);
   }
   componentDidMount() {
     this.el.addEventListener('mouseover', this.setHover);
@@ -28,9 +36,10 @@ class Touchable extends Component {
     this.el.addEventListener('mousedown', this.setActive);
     document.addEventListener('mouseup', this.unsetActive);
 
-    this.el.addEventListener('touchstart', this.setActive);
-    document.addEventListener('touchmove', this.unsetActive);
-    document.addEventListener('touchend', this.unsetActive);
+    this.el.addEventListener('touchstart', this.setBoth);
+    document.addEventListener('touchmove', this.unsetBoth);
+    document.addEventListener('touchend', this.unsetBoth);
+    this.el.addEventListener('click', this.unsetBoth);
   }
   componentWillUnmount() {
     this.el.removeEventListener('mouseover', this.setHover);
@@ -39,9 +48,10 @@ class Touchable extends Component {
     this.el.removeEventListener('mousedown', this.setActive);
     document.removeEventListener('mouseup', this.unsetActive);
 
-    this.el.removeEventListener('touchstart', this.setActive);
-    document.removeEventListener('touchmove', this.unsetActive);
-    document.removeEventListener('touchend', this.unsetActive);
+    this.el.removeEventListener('touchstart', this.setBoth);
+    document.removeEventListener('touchmove', this.unsetBoth);
+    document.removeEventListener('touchend', this.unsetBoth);
+    this.el.removeEventListener('click', this.unsetBoth);
   }
   render() {
     var { style, styleHover, styleActive, ...other } = this.props;

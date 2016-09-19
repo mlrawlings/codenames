@@ -69,7 +69,8 @@ function Tile({ word, type, height, width, show, showAll, onShow }) {
         boxShadow
       }}
       styleHover={!show && tileStyleHover}
-      styleActive={!show && tileStyleActive}>
+      styleActive={!show && tileStyleActive}
+      stayPressed={true}>
         {word.toLowerCase()}
     </Touchable>
   )
