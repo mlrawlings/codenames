@@ -13,21 +13,27 @@ class Touchable extends Component {
   }
   setHover() {
     this.setState({ isHover:true });
+    clearTimeout(this.hoverTimeout);
   }
-  unsetHover() {
-    setTimeout(() => this.setState({ isHover:false }), 50);
+  unsetHover(e) {
+    this.hoverTimeout = setTimeout(() => this.setState({ isHover:false }), 50);
   }
   setActive() {
     this.setState({ isActive:true });
+    clearTimeout(this.activeTimeout);
   }
   unsetActive() {
-    setTimeout(() => this.setState({ isActive:false }), 50);
+    this.activeTimeout = setTimeout(() => this.setState({ isActive:false }), 50);
   }
   setBoth() {
-    this.setState({ isActive:true, isHover:true });
+     this.setState({ isActive:true, isHover:true, isBoth:true });
+     clearTimeout(this.bothTimeout);
+     clearTimeout(this.hoverTimeout);
+     clearTimeout(this.activeTimeout);
   }
   unsetBoth() {
-    setTimeout(() => this.setState({ isActive:false, isHover:false }), 50);
+    if(this.state.isBoth)
+      this.bothTimeout = setTimeout(() => this.setState({ isActive:false, isHover:false, isBoth:false }), 50);
   }
   componentDidMount() {
     this.el.addEventListener('mouseover', this.setHover);
@@ -39,6 +45,7 @@ class Touchable extends Component {
     this.el.addEventListener('touchstart', this.setBoth);
     document.addEventListener('touchmove', this.unsetBoth);
     document.addEventListener('touchend', this.unsetBoth);
+
     this.el.addEventListener('click', this.unsetBoth);
   }
   componentWillUnmount() {
@@ -51,6 +58,7 @@ class Touchable extends Component {
     this.el.removeEventListener('touchstart', this.setBoth);
     document.removeEventListener('touchmove', this.unsetBoth);
     document.removeEventListener('touchend', this.unsetBoth);
+
     this.el.removeEventListener('click', this.unsetBoth);
   }
   render() {
