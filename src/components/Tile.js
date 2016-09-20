@@ -1,5 +1,6 @@
 import React from 'react';
 import Touchable from './Touchable';
+import purify from '../util/purify';
 
 const tileStyle = {
   verticalAlign:'middle',
@@ -69,11 +70,10 @@ function Tile({ word, type, height, width, show, showAll, onShow }) {
         boxShadow
       }}
       styleHover={!show && tileStyleHover}
-      styleActive={!show && tileStyleActive}
-      stayPressed={true}>
+      styleActive={!show && tileStyleActive}>
         {word.toLowerCase()}
     </Touchable>
   )
 }
 
-export default Tile;
+export default purify(Tile);

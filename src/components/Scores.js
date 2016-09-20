@@ -1,5 +1,6 @@
 import React from 'react';
 import Container from './Container';
+import purify from '../util/purify';
 
 const teamStyle = {
   flex:1,
@@ -19,9 +20,20 @@ const scoresStyle = {
 };
 
 function Scores({ team1, team2, tiles }) {
-  var team1Remaining = tiles.filter(tile => !tile.show && tile.type.name === team1.name).length;
-  var team2Remaining = tiles.filter(tile => !tile.show && tile.type.name === team2.name).length;
-  var revealed = tiles.filter(tile => tile.show).length;
+  var team1Remaining = 0;
+  var team2Remaining = 0;
+  var revealed = false;
+
+  tiles.forEach(tile => {
+    if(tile.show) {
+      revealed = true;
+    } else if(tile.type.name === team1.name) {
+      team1Remaining++;
+    } else if(tile.type.name === team2.name) {
+      team2Remaining++;
+    }
+  });
+
   return revealed ? (
     <Container style={scoresStyle}>
       <div style={{ ...teamStyle, backgroundColor:team2.color, borderRight:'1px solid #bab' }}>
@@ -34,10 +46,11 @@ function Scores({ team1, team2, tiles }) {
   ) : (
     <div style={scoresStyle}>
       <div style={{ ...teamStyle, backgroundColor:team1.color }}>
-        <span style={{ fontSize:'2vw' }}>{team1.name}</span><span style={{ fontSize:'1.25vw', fontWeight:400 }}>goes first</span>
+        <span style={{ fontSize:'2vw', }}>{team1.name}</span>
+        <span style={{ fontSize:'1vw', fontWeight:400 }}>plays first</span>
       </div>
     </div>
   )
 }
 
-export default Scores;
+export default purify(Scores);

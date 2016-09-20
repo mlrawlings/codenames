@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 
-class Touchable extends Component {
+class Touchable extends PureComponent {
   constructor(props) {
     super(props);
     this.state = {};
@@ -13,27 +13,22 @@ class Touchable extends Component {
   }
   setHover() {
     this.setState({ isHover:true });
-    clearTimeout(this.hoverTimeout);
   }
   unsetHover(e) {
-    this.hoverTimeout = setTimeout(() => this.setState({ isHover:false }), 50);
+    this.setState({ isHover:false });
   }
   setActive() {
     this.setState({ isActive:true });
-    clearTimeout(this.activeTimeout);
   }
   unsetActive() {
-    this.activeTimeout = setTimeout(() => this.setState({ isActive:false }), 50);
+    this.setState({ isActive:false });
   }
   setBoth() {
      this.setState({ isActive:true, isHover:true, isBoth:true });
-     clearTimeout(this.bothTimeout);
-     clearTimeout(this.hoverTimeout);
-     clearTimeout(this.activeTimeout);
   }
   unsetBoth() {
     if(this.state.isBoth)
-      this.bothTimeout = setTimeout(() => this.setState({ isActive:false, isHover:false, isBoth:false }), 50);
+      this.setState({ isActive:false, isHover:false, isBoth:false });
   }
   componentDidMount() {
     this.el.addEventListener('mouseover', this.setHover);

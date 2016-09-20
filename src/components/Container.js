@@ -1,10 +1,10 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 
 const containerStyle = {
   flex:1
 };
 
-class Container extends Component {
+class Container extends PureComponent {
   constructor(props) {
     super(props);
     this.state = {};

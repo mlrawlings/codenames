@@ -7,6 +7,7 @@ import timerIcon from '../images/Stopwatch.png';
 import videoIconOn from '../images/VideoMessage.png';
 import videoIconOff from '../images/VideoEnd.png';
 import restartIcon from '../images/Restart.png';
+import purify from '../util/purify';
 
 const menuStyle = {
   flexDirection:'row',
@@ -70,4 +71,4 @@ function Menu(props) {
   );
 }
 
-export default Menu;
+export default purify(Menu);

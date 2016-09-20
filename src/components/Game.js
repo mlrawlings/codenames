@@ -2,6 +2,7 @@ import React from 'react';
 import Menu from './Menu';
 import Board from './Board';
 import Scores from './Scores';
+import purify from '../util/purify'
 
 const gameStyle = {
   flex:1
@@ -27,4 +28,4 @@ function Game({ team1, team2, board, showAll, loading, video, onRestart, onShow,
   )
 }
 
-export default Game;
+export default purify(Game);

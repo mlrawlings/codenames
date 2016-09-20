@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import SimpleWebRTC from 'simplewebrtc';
 import Container from './Container';
 
@@ -28,7 +28,7 @@ const remoteVideoStyle = {
   overflow:'hidden'
 }
 
-class Video extends Component {
+class Video extends PureComponent {
   constructor(props) {
     super(props);
     this.state = {};

@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import Tile from './Tile';
 import { getClosestDim } from '../util';
 
@@ -10,7 +10,7 @@ const boardStyle = {
   border:'4px solid #eee',
 };
 
-class Board extends Component {
+class Board extends PureComponent {
   constructor(props) {
     super(props);
     this.state = {};

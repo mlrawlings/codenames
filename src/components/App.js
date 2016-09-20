@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import Container from './Container';
 import Game from './Game';
 import Video from './Video';
@@ -6,7 +6,7 @@ import io from 'socket.io-client';
 
 const socket = io(location.protocol+'//'+(process.env.NODE_ENV === 'production' ? location.host : location.hostname+':2633'));
 
-class App extends Component {
+class App extends PureComponent {
   constructor(props) {
     super(props);
     this.state = {};
@@ -29,15 +29,27 @@ class App extends Component {
         history.replaceState({}, '', data.id);
       }
       if(data.count !== this.state.count) {
-        this.setState({ showAll:false, loading:false });
+        this.setState({ ...data, showAll:false, loading:false });
+      } else {
+        this.setState(data);
       }
-      this.setState(data);
     });
+
+    socket.on('reveal-word', (data) => {
+      this.revealWord(data.word);
+    })
+  }
+  revealWord(word) {
+    var board = this.state.board;
+    var tileIndex = this.state.board.findIndex(tile => tile.word === word);
+    var tile = board[tileIndex];
+    var newTile = { ...tile, show:true };
+    var newBoard = [ ...board.slice(0, tileIndex), newTile, ...board.slice(tileIndex+1) ];
+    this.setState({ board:newBoard });
   }
   onShow(word) {
     socket.emit('reveal-word', { id:this.state.id, word });
-    this.state.board.forEach(tile => { if(tile.word === word) return tile.show = true });
-    this.setState(this.state);
+    this.revealWord(word);
   }
   onShowAll() {
     this.setState({ showAll:!this.state.showAll });

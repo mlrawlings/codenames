@@ -33,7 +33,7 @@ io.on('connection', function (socket) {
   });
   socket.on('reveal-word', function (data) {
     var game = revealWord(data.id, data.word);
-    io.to('game-'+game.id).emit('game-data', game);
+    io.to('game-'+game.id).emit('reveal-word', data);
   });
   socket.on('start-video', function (data) {
     // io.to('game-'+data.id).emit('game-data', revealTile(data.word))
