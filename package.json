@@ -17,7 +17,7 @@
   },
   "scripts": {
     "start": "react-scripts start & browser-refresh server & wait",
-    "build": "react-scripts build",
+    "build": "react-scripts build && rm -rf public && mv ./build ./public",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   },

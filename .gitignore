@@ -8,6 +8,7 @@ coverage
 
 # production
 build
+public
 
 # deployment
 deploy.bat
@@ -15,3 +16,4 @@ deploy.bat
 # misc
 .DS_Store
 npm-debug.log
+game-cache.json

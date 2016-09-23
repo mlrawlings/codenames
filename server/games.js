@@ -1,7 +1,41 @@
 const NUM = 24;
 const words = require('./words');
 const randomstring = require('randomstring');
-var games = {};
+const fs = require('fs');
+const path = require('path');
+const cachePath = path.join(__dirname, './game-cache.json')
+var games;
+
+try {
+  games = require(cachePath);
+  fs.unlinkSync(cachePath);
+  cleanGames();
+} catch(e) {
+  games = {};
+}
+
+process.on('exit', exitHandler.bind(null,{ cleanup:true }));
+process.on('SIGINT', exitHandler.bind(null, { cleanup:true, exit:true }));
+process.on('uncaughtException', exitHandler.bind(null, { exit:true }));
+
+function exitHandler(options, err) {
+    if (options.cleanup) {
+      Object.keys(games).forEach(id => games[id].clients = 0);
+      fs.writeFileSync(cachePath, JSON.stringify(games));
+    }
+    if (err) console.log(err.stack);
+    if (options.exit) process.exit();
+}
+
+function cleanGames() {
+  Object.keys(games).forEach(id => {
+    var game = games[id];
+    if(game.clients === 0 && game.exitTime < Date.now()-30*60*1000) {
+      delete games[id];
+    }
+  });
+  setTimeout(cleanGames, 10*60*1000); //run every 10 minutes
+}
 
 exports.createGame = createGame;
 exports.joinGame = joinGame;
@@ -55,8 +89,8 @@ function revealWord(id, word) {
 
 function leaveGame(id) {
     var game = games[id];
-    if(!game.clients--) {
-      delete game[id];
+    if(game && !--game.clients) {
+      game.exitTime = Date.now();
     }
 }
 
