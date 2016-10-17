@@ -6,7 +6,7 @@ const teamStyle = {
   flex:1,
   alignItems:'center',
   justifyContent:'center',
-  fontSize:'4vw',
+  fontSize:'4vmin',
   fontWeight:300,
   color:'#fff',
   textAlign:'center'
