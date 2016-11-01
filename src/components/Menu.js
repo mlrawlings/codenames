@@ -3,7 +3,7 @@ import Touchable from './Touchable';
 import rulesIcon from '../images/Trophy.png';
 import showIconOn from '../images/Visible.png';
 import showIconOff from '../images/Invisible.png';
-import timerIcon from '../images/Stopwatch.png';
+import githubIcon from '../images/GitHub.png';
 import videoIconOn from '../images/VideoMessage.png';
 import videoIconOff from '../images/VideoEnd.png';
 import restartIcon from '../images/Restart.png';
@@ -51,9 +51,9 @@ function Menu(props) {
         <img style={iconStyle} alt="" src={video ? videoIconOff : videoIconOn} />
         <span>{video ? 'stop video' : 'video chat'}</span>
       </Touchable>
-      <Touchable style={buttonStyle} styleHover={buttonStyleHover} styleActive={buttonStyleActive} onClick={props.onTime}>
-        <img style={iconStyle} alt="" src={timerIcon} />
-        <span>start timer</span>
+      <Touchable style={buttonStyle} styleHover={buttonStyleHover} styleActive={buttonStyleActive} onClick={props.onSource}>
+        <img style={iconStyle} alt="" src={githubIcon} />
+        <span>contribute</span>
       </Touchable>
       <Touchable style={buttonStyle} styleHover={buttonStyleHover} styleActive={buttonStyleActive} onClick={props.onLink}>
         <img style={iconStyle} alt="" src={rulesIcon} />
